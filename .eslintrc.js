@@ -10,9 +10,13 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'plugin:prettier/recommended',
         'plugin:jsx-a11y/strict',
+        'airbnb',
+        'airbnb-typescript',
+        'airbnb/hooks',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
+        project: './tsconfig.json',
         ecmaFeatures: {
             jsx: true,
         },
@@ -39,9 +43,6 @@ module.exports = {
                 '**/*.spec.jsx',
                 '**/*.spec.tsx',
             ],
-            env: {
-                jest: true,
-            },
         },
     ],
 };
