@@ -18,7 +18,7 @@
         "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-react": "^7.30.0",
         "husky": "^8.0.1",
-        "lint-staged": "^13.0.2"
+        "lint-staged": "^13.0.3"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -45,7 +45,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "echo \"[Husky] pre-commit\""
+            "pre-commit": "lint-staged"
         }
     },
     "lint-staged": {
