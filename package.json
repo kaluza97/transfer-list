@@ -7,9 +7,19 @@
         "react-dom": "^18.2.0",
         "react-scripts": "5.0.1",
         "redux": "^4.2.0",
-        "typescript": "^4.4.2"
+        "typescript": "^4.4.2",
+        "@storybook/react": "^6.5.9"
     },
     "devDependencies": {
+      "@storybook/addon-actions": "^6.5.9",
+      "@storybook/addon-essentials": "^6.5.9",
+      "@storybook/addon-interactions": "^6.5.9",
+      "@storybook/addon-links": "^6.5.9",
+      "@storybook/builder-webpack5": "^6.5.9",
+      "@storybook/manager-webpack5": "^6.5.9",
+      "@storybook/node-logger": "^6.5.9",
+      "@storybook/preset-create-react-app": "^4.1.2",
+      "@storybook/testing-library": "^0.0.13",
         "@types/node": "^16.7.13",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
@@ -29,7 +39,9 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "format": "prettier --write .",
-        "lint": "eslint"
+        "lint": "eslint",
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -40,18 +52,21 @@
             "not dead",
             "not op_mini all"
         ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
+        "rules": {
+          "import/no-anonymous-default-export": "off"
         }
     },
-    "lint-staged": {
-        "*": "prettier --write"
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*": "prettier --write"
+  }
 }
