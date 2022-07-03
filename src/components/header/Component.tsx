@@ -1,4 +1,4 @@
-import { Title } from './Header.styles';
+import { Title } from './Styles';
 
 export const Header = () => {
     return <Title>Hello World</Title>;

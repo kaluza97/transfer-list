@@ -3,11 +3,6 @@ import 'styled-components';
 declare module 'styled-components' {
     export interface DefaultTheme {
         borderRadius: string;
-
-        colors: {
-            main: string;
-            secondary: string;
-        };
         fonts: {
             main: string;
             secondary: string;
@@ -18,4 +13,11 @@ declare module 'styled-components' {
             large: string;
         };
     }
+}
+
+export interface ColorsInterface {
+    main: string;
+    secondary: string;
+    white: string;
+    black: string;
 }
