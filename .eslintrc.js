@@ -1,30 +1,33 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true
-  },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:prettier/recommended', 'plugin:jsx-a11y/strict', 'airbnb', 'airbnb-typescript', 'airbnb/hooks', 'plugin:storybook/recommended'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: './tsconfig.json',
-    ecmaFeatures: {
-      jsx: true
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
-    ecmaVersion: 2018,
-    sourceType: 'module'
   },
-  plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
+  extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+  ],
+  plugins: ['prettier'],
   rules: {
-    'react-hooks/exhaustive-deps': 'error',
-    'no-var': 'error',
-    'brace-style': 'error',
-    'prefer-template': 'error',
-    radix: 'error',
-    'space-before-blocks': 'error',
-    'import/prefer-default-export': 'off'
+    'prettier/prettier': ['error'],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'import/prefer-default-export': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
-  overrides: [{
-    files: ['**/*.test.js', '**/*.test.jsx', '**/*.test.tsx', '**/*.spec.js', '**/*.spec.jsx', '**/*.spec.tsx']
-  }]
 };
