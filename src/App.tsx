@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
-import { database } from './config/firebase.config';
+import database from 'config/firebase.config';
+import { ref, set } from 'firebase/database';
 import './App.css';
 
 function App() {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-
-  const Push = () => {
-    database
-      .ref('user')
-      .set({
-        name,
-        age,
-      })
-      .catch(alert);
+  const [todo, setTodo] = useState('');
+  const [id, setId] = useState(10);
+  const handleChange = (e: any) => {
+    setTodo(e.target.value);
   };
 
-  function handleChangeName(event: React.ChangeEvent<HTMLInputElement>) {
-    setName(event.target.value);
-  }
-
-  function handleChangeAge(event: React.ChangeEvent<HTMLInputElement>) {
-    setAge(event.target.value);
-  }
+  const writeToDatabase = (e: any) => {
+    const uuid = id;
+    set(ref(database, `users/${uuid}`), {
+      todo,
+      uuid,
+    });
+    setTodo('');
+    e.preventDefault();
+  };
 
   return (
-    <div className="App" style={{ marginTop: 250 }}>
-      <input placeholder="Enter your name" value={name} onChange={handleChangeName} />
-      <input placeholder="Enter your age" value={age} onChange={handleChangeAge} />
-      <button type="button" onClick={Push}>
-        PUSH
+    <div>
+      <p>baza danych</p>
+      <input type="text" value={todo} onChange={handleChange} />
+      <button type="submit" onClick={writeToDatabase}>
+        submit
       </button>
     </div>
   );
 }
-
 export default App;
