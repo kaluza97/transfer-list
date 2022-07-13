@@ -1,32 +1,28 @@
 import React, { useState } from 'react';
-import database from 'config/firebase.config';
-import { ref, set } from 'firebase/database';
+import { database } from 'config/firebase.config';
+import { collection, addDoc } from 'firebase/firestore';
 import './App.css';
 
 function App() {
-  const [todo, setTodo] = useState('');
-  const [id, setId] = useState(10);
-  const handleChange = (e: any) => {
-    setTodo(e.target.value);
+  const [value, setValue] = useState<string>('');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
   };
 
-  const writeToDatabase = (e: any) => {
-    const uuid = id;
-    set(ref(database, `users/${uuid}`), {
-      todo,
-      uuid,
+  const writeToDatabase = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    addDoc(collection(database, 'users'), {
+      first: 'Anastasia',
+      last: 'Tokarenko',
+      born: 1999,
     });
-    setTodo('');
-    e.preventDefault();
   };
 
   return (
     <div>
-      <p>baza danych</p>
-      <input type="text" value={todo} onChange={handleChange} />
-      <button type="submit" onClick={writeToDatabase}>
-        submit
-      </button>
+      <form onSubmit={writeToDatabase}>
+        <input type="text" value={value} onChange={handleChange} />
+      </form>
     </div>
   );
 }
