@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { database } from 'config/firebase.config';
 import { collection, addDoc } from 'firebase/firestore';
+import { Header } from 'components/header/Component';
 import './App.css';
 
-function App() {
+export const App = () => {
   const [value, setValue] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -13,17 +14,17 @@ function App() {
     event.preventDefault();
     addDoc(collection(database, 'users'), {
       first: 'Anastasia',
-      last: 'Tokarenko',
+      last: 'Inna',
       born: 1999,
     });
   };
 
   return (
     <div>
+      <Header />
       <form onSubmit={writeToDatabase}>
         <input type="text" value={value} onChange={handleChange} />
       </form>
     </div>
   );
-}
-export default App;
+};
