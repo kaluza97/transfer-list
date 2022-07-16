@@ -1,30 +1,16 @@
-import React, { useState } from 'react';
-import { database } from 'config/firebase.config';
-import { collection, addDoc } from 'firebase/firestore';
-import { Header } from 'components/header/Component';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home } from 'components/home/Component';
+import { Login } from 'components/login/Component';
+import LoginPage from 'pages/LoginPage';
+import RegisterPage from 'pages/RegisterPage';
 
-export const App = () => {
-  const [value, setValue] = useState<string>('');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
-  const writeToDatabase = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    addDoc(collection(database, 'users'), {
-      first: 'Anastasia',
-      last: 'Inna',
-      born: 1999,
-    });
-  };
-
-  return (
-    <div>
-      <Header />
-      <form onSubmit={writeToDatabase}>
-        <input type="text" value={value} onChange={handleChange} />
-      </form>
-    </div>
-  );
-};
+export const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
+  </BrowserRouter>
+);
