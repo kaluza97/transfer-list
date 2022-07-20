@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '../redux/slice/authSlice';
 
@@ -28,7 +28,8 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div>
+      <h1>Login</h1>
       <input
         type="email"
         value={email}
@@ -44,7 +45,10 @@ const Login = () => {
       <button type="submit" onClick={() => handleLogin(email, pass)}>
         klick
       </button>
-    </>
+      <p>
+        <Link to="/register">register</Link>
+      </p>
+    </div>
   );
 };
 

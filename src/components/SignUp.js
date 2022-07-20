@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '../redux/slice/authSlice';
 
@@ -25,7 +25,15 @@ const SignUp = () => {
       .catch(console.error);
   };
 
-  return <p>in progress</p>;
+  return (
+    <div>
+      <h1>Register</h1>
+      <p>in progress</p>;
+      <p>
+        Already have an account? <Link to="/login">Sign in</Link>
+      </p>
+    </div>
+  );
 };
 
 export { SignUp };
