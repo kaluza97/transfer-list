@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { setUser } from '../redux/slice/authSlice';
+import { setUser } from '../../redux/slice/authSlice';
 
-const Login = () => {
+export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [pass, setPass] = useState<string>('');
 
   const handleLogin = () => {
     const auth = getAuth();
@@ -19,7 +19,6 @@ const Login = () => {
           setUser({
             email: user.email,
             id: user.uid,
-            token: user.accessToken,
           }),
         );
         navigate('/home');
@@ -42,7 +41,7 @@ const Login = () => {
         onChange={(e) => setPass(e.target.value)}
         placeholder="password"
       />
-      <button type="submit" onClick={() => handleLogin(email, pass)}>
+      <button type="submit" onClick={() => handleLogin()}>
         klick
       </button>
       <p>
@@ -51,5 +50,3 @@ const Login = () => {
     </div>
   );
 };
-
-export { Login };

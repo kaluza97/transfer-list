@@ -24,6 +24,8 @@ module.exports = {
     'arrow-body-style': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'react/function-component-definition': [
       2,
       {
