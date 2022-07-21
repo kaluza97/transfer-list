@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { HOME, REGISTER } from 'constants/Routes';
 import { setUser } from '../../redux/slice/authSlice';
 
 export const Login = () => {
@@ -21,7 +22,7 @@ export const Login = () => {
             id: user.uid,
           }),
         );
-        navigate('/home');
+        navigate(HOME);
       })
       .catch(() => console.log('Invalid user!'));
   };
@@ -45,7 +46,7 @@ export const Login = () => {
         klick
       </button>
       <p>
-        <Link to="/register">register</Link>
+        <Link to={REGISTER}>register</Link>
       </p>
     </div>
   );

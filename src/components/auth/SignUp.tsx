@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { MAIN } from 'constants/Routes';
 import { setUser } from '../../redux/slice/authSlice';
 
 const SignUp = () => {
@@ -19,7 +20,7 @@ const SignUp = () => {
             id: user.uid,
           }),
         );
-        navigate('/');
+        navigate(MAIN);
       })
       .catch(console.error);
   };
