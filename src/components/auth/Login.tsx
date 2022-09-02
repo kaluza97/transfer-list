@@ -1,30 +1,27 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { HOME, REGISTER } from 'constants/Routes';
-import { setUser } from '../../redux/slice/authSlice';
+import { auth, signInWithEmailAndPassword } from 'config/firebase.config';
+import { setUser } from 'redux/slice/authSlice';
+import { LoginGoogle } from './LoginGoogle';
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
-  const [pass, setPass] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const handleLogin = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, pass)
-      .then(({ user }) => {
-        console.log(user);
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-          }),
-        );
-        navigate(HOME);
-      })
-      .catch(() => console.log('Invalid user!'));
+    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+        }),
+      );
+      navigate(HOME);
+    });
   };
 
   return (
@@ -38,14 +35,15 @@ export const Login = () => {
       />
       <input
         type="password"
-        value={pass}
-        onChange={(e) => setPass(e.target.value)}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         placeholder="password"
       />
-      <button type="submit" onClick={() => handleLogin()}>
-        klick
+      <button type="submit" onClick={handleLogin}>
+        login
       </button>
       <p>
+        <LoginGoogle />
         <Link to={REGISTER}>register</Link>
       </p>
     </div>

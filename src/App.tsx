@@ -13,7 +13,6 @@ export const App = () => {
 
   useEffect(() => {
     if (userId !== null) setIsUserLogged(true);
-    else setIsUserLogged(false);
   }, [userId]);
 
   return (
