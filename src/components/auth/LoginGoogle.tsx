@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { auth, GoogleAuthProvider, signInWithPopup } from 'config/firebase.config';
-import { setUser } from '../../redux/slice/authSlice';
 
 export const LoginGoogle = () => {
   const provider = new GoogleAuthProvider();

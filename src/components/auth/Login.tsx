@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { HOME, REGISTER } from 'constants/Routes';
-import { auth, signInWithEmailAndPassword } from 'config/firebase.config';
-import { setUser } from 'redux/slice/authSlice';
+import { auth } from 'config/firebase.config';
+import { AppDispatch, RootState } from 'redux/store';
+import { fetchUserById } from 'redux/auth/thunk';
 import { LoginGoogle } from './LoginGoogle';
 
 export const Login = () => {
-  const dispatch = useDispatch();
+  const { id } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      dispatch(
-        setUser({
-          email: user.email,
-          id: user.uid,
-        }),
-      );
-      navigate(HOME);
-    });
+    dispatch(fetchUserById({ auth, email, password }));
   };
+
+  useEffect(() => {
+    if (id) {
+      navigate(HOME);
+    }
+  }, [id]);
 
   return (
     <div>
