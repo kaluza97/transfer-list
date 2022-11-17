@@ -1,10 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  Auth,
-  browserSessionPersistence,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
+import { Auth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 interface Props {
   auth: Auth;
@@ -12,16 +7,12 @@ interface Props {
   password: string;
 }
 
+const messageFunction = (message: string) => {
+  console.log(message);
+};
+
 export const fetchUserById = createAsyncThunk('user/fetchByIdStatus', async (data: Props) => {
   const { auth, email, password } = data;
-  auth
-    .setPersistence(browserSessionPersistence)
-    .then(() => {
-      console.log('Persistence set');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
   const response = await signInWithEmailAndPassword(auth, email, password);
   return response.user;
 });
@@ -29,10 +20,10 @@ export const fetchUserById = createAsyncThunk('user/fetchByIdStatus', async (dat
 export const userLogout = createAsyncThunk('user/userLogout', async (auth: Auth) => {
   const response = await signOut(auth)
     .then(() => {
-      console.log('zostales wylogowany');
+      messageFunction('You have been logged out');
     })
     .catch((error) => {
-      console.log('logout failed');
+      messageFunction(error);
     });
   return response;
 });
