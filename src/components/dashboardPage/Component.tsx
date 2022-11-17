@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Logout } from 'components/auth/Logout';
 import { Title } from './Styles';
 
-export const Home = () => {
+export const DashboardPage = () => {
   const [value, setValue] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -20,10 +20,10 @@ export const Home = () => {
   };
   return (
     <div>
-      <Title>Home</Title>
+      <Title>Welcome in dashboard page</Title>
       <form onSubmit={writeToDatabase}>
         <input type="text" value={value} onChange={handleChange} />
-        <Logout buttonTitle="logout" />
+        <Logout />
       </form>
     </div>
   );

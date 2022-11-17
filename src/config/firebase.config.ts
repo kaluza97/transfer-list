@@ -1,27 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  serverTimestamp,
-  doc,
-  orderBy,
-  limit,
-  onSnapshot,
-  query,
-} from 'firebase/firestore';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -37,24 +16,4 @@ const app = initializeApp(firebaseConfig);
 const database = getFirestore(app);
 const auth = getAuth(app);
 
-export {
-  database,
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  serverTimestamp,
-  doc,
-  auth,
-  orderBy,
-  limit,
-  onSnapshot,
-  query,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
-};
+export { database, auth };
