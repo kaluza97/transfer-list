@@ -5,9 +5,11 @@ export interface UserData {
   email: null | string;
   id: null | string;
   isLoading: boolean;
+  isError: boolean;
 }
 
 export const initialState: UserData = {
+  isError: false,
   isLoading: false,
   email: null,
   id: null,
@@ -22,18 +24,20 @@ const authSlice = createSlice({
         state.email = action.payload.email;
         state.id = action.payload.uid;
         state.isLoading = false;
+        state.isError = false;
       })
       .addCase(fetchUserById.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchUserById.rejected, (state) => {
         state.isLoading = false;
+        state.isError = true;
       });
   },
   reducers: {
     removeUser(state) {
-      state.email = null;
-      state.id = null;
+      state.email = initialState.email;
+      state.id = initialState.id;
     },
   },
 });

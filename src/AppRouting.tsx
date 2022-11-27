@@ -14,7 +14,6 @@ export const AppRouting = () => {
       <p>Your id: {id}</p>
       <Routes>
         <Route path={MAIN} element={<Login />} />
-        <Route path={MAIN} element={<Logout />} />
         <Route path={DASHBOARD_PAGE} element={<ProtectedRoutes route={<DashboardPage />} />} />
       </Routes>
     </BrowserRouter>
