@@ -20,7 +20,9 @@ module.exports = {
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
+    'no-param-reassign': 0,
     'import/no-unresolved': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'react/function-component-definition': [
       2,
       {

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { database } from 'config/firebase.config';
 import { collection, addDoc } from 'firebase/firestore';
-import { Header } from 'components/header/Component';
-import './App.css';
+import { Logout } from 'components/auth/Logout';
+import { Title } from './Styles';
 
-export const App = () => {
+export const DashboardPage = () => {
   const [value, setValue] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -18,12 +18,12 @@ export const App = () => {
       born: 1999,
     });
   };
-
   return (
     <div>
-      <Header />
+      <Title>Welcome in dashboard page</Title>
       <form onSubmit={writeToDatabase}>
         <input type="text" value={value} onChange={handleChange} />
+        <Logout />
       </form>
     </div>
   );
